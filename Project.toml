@@ -3,6 +3,9 @@ uuid = "ade9ad8f-6d2b-44a4-95ad-6f8d9eab243e"
 authors = ["Jonnie Diegelman"]
 version = "0.1.0"
 
+[deps]
+ComponentArrays = "b0b7db55-cfe3-40fc-9ded-d10e2dbeff66"
+
 [compat]
 julia = "1"
 

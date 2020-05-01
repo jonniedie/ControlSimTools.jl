@@ -1,0 +1,14 @@
+# This file is machine-generated - editing it directly is not advised
+
+[[ComponentArrays]]
+deps = ["LinearAlgebra"]
+git-tree-sha1 = "f125568886162f703e0332bb59cb166796c17c02"
+uuid = "b0b7db55-cfe3-40fc-9ded-d10e2dbeff66"
+version = "0.2.1"
+
+[[Libdl]]
+uuid = "8f399da3-3557-5675-b5ff-fb832c97cbdb"
+
+[[LinearAlgebra]]
+deps = ["Libdl"]
+uuid = "37e2e46d-f89d-539d-b4ee-838fcccc9c8e"
