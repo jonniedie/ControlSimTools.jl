@@ -5,15 +5,15 @@ using DataStructures: CircularBuffer, DataStructures
 using DiffEqBase: DEProblem, AbstractDiffEqFunction, AbstractTimeseriesSolution, isinplace
 using DiffEqCallbacks: PeriodicCallback, SavedValues
 using OffsetArrays: OffsetArray
-using RecursiveArrayTools: RecursiveArrayTools, DiffEqArray
+using RecursiveArrayTools: RecursiveArrayTools, DiffEqArray, VectorOfArray
 using UnPack
 
 include("input_handling.jl")
-include("DiscreteContinuousSystems/hybrid_systems.jl")
-include("DiscreteContinuousSystems/discrete_variable_buffer.jl")
+include("ContinuousDiscreteSystems/hybrid_systems.jl")
+include("ContinuousDiscreteSystems/discrete_buffer_variable.jl")
 
 export apply_inputs
-export ContinuousDiscreteProblem, DiscreteVariableBuffer, DiscreteVariableCallback
+export ContinuousDiscreteProblem, DiscreteBufferVariable, DiscreteVariableCallback
 
 
 end # module
