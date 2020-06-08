@@ -1,11 +1,11 @@
 
 
-maybe_apply(f::Function, x, p, t) = f(x, p, t)
-maybe_apply(f, x, p, t) = f
+_maybe_apply(f::Function, x, p, t) = f(x, p, t)
+_maybe_apply(f, x, p, t) = f
 
 
 """
-    f = simulator(func; kwargs...)
+    f = apply_inputs(func; kwargs...)
 
 Creates functions for use in ODEProblems that allow functions of type ```(x,p,t)->{...}```
     to be passed in through keyword arguments and applied before passing their result into
@@ -23,7 +23,7 @@ julia> function eom!(dx, x, m, t; F=0) # <--Note the input F
        end
 eom! (generic function with 1 method)
 
-julia> prob = ODEProblem(simulator(eom!, F=(x,p,t)->sin(t)), [0.0, 0.0], (0.0, 10.0), 100.0);
+julia> prob = ODEProblem(apply_inputs(eom!, F=(x,p,t)->sin(t)), [0.0, 0.0], (0.0, 10.0), 100.0);
 
 julia> sol = solve(prob, Tsit5());
 
@@ -33,8 +33,8 @@ julia> sol.u[end]
  0.01839060375124582
 ```
 """
-function simulator(func; kwargs...)
-    simfun(dx, x, p, t) = func(dx, x, p, t; map(f->maybe_apply(f, x, p, t), (;kwargs...))...)
-    simfun(x, p, t) = func(x, p, t; map(f->maybe_apply(f, x, p, t), (;kwargs...))...)
+function apply_inputs(func; kwargs...)
+    simfun(dx, x, p, t) = func(dx, x, p, t; map(f->_maybe_apply(f, x, p, t), (;kwargs...))...)
+    simfun(x, p, t) = func(x, p, t; map(f->_maybe_apply(f, x, p, t), (;kwargs...))...)
     return simfun
 end
