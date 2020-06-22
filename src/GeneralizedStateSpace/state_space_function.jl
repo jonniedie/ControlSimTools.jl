@@ -19,7 +19,6 @@ struct StateSpaceFunction{F,H,NT} <: Function
     f!::F
     h::H
     inputs::NT
-    
 end
 StateSpaceFunction(f!, h; inputs...) = StateSpaceFunction(f!, h, inputs)
 
