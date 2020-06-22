@@ -1,6 +1,3 @@
-maybe_apply(f::Function, args...) = f(args...)
-maybe_apply(f, args...) = f
-
 """
     StateSpaceFunction(f!, h; kwargs...)
 
@@ -23,7 +20,7 @@ end
 StateSpaceFunction(f!, h; inputs...) = StateSpaceFunction(f!, h, inputs)
 
 function (ssf::StateSpaceFunction)(dx, args...; kwargs...)
-    applied_kwargs = map(f -> maybe_apply(f, args...), (;ssf.inputs..., kwargs...))
+    applied_kwargs = map(f -> _maybe_apply(f, args...), (;ssf.inputs..., kwargs...))
     ssf.f!(dx, args...; applied_kwargs...)
     return ssf.h(args...; applied_kwargs...)
 end
