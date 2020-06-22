@@ -17,7 +17,7 @@ struct StateSpaceFunction{F,H,NT} <: Function
     h::H
     inputs::NT
 end
-StateSpaceFunction(f!, h; inputs...) = StateSpaceFunction(f!, h, inputs)
+StateSpaceFunction(f!, h; inputs...) = StateSpaceFunction(f!, h, (;inputs...))
 
 function (ssf::StateSpaceFunction)(dx, args...; kwargs...)
     applied_kwargs = map(f -> _maybe_apply(f, args...), (;ssf.inputs..., kwargs...))
