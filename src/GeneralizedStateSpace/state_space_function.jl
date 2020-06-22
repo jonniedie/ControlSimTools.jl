@@ -15,18 +15,16 @@ h(x, p, t; u=1000, err) = x .- 3u
 ssf = StateSpaceFunction(f!, h; u=(x,p,t)->cos(t), err=0.0)
 ```
 """
-struct StateSpaceFunction{F,H} <: Function
-  f!::F
-  h::H
-  
-  function StateSpaceFunction(input_f!, input_h; input_kwargs...)
-    f!(dx, args...; kwargs...) = input_f!(dx, args...; map(f -> maybe_apply(f, args...), (;input_kwargs...))..., kwargs...)
-    h(args...; kwargs...) = input_h(args...; map(f -> maybe_apply(f, args...), (;input_kwargs...))..., kwargs...)
-    return new{typeof(f!), typeof(h)}(f!, h)
-  end
+struct StateSpaceFunction{F,H,NT} <: Function
+    f!::F
+    h::H
+    inputs::NT
+    
 end
+StateSpaceFunction(f!, h; inputs...) = StateSpaceFunction(f!, h, inputs)
 
 function (ssf::StateSpaceFunction)(dx, args...; kwargs...)
-  ssf.f!(dx, args...; kwargs...)
-  return ssf.h(args...; kwargs...)
+    applied_kwargs = map(f -> maybe_apply(f, args...), (;ssf.inputs..., kwargs...))
+    ssf.f!(dx, args...; applied_kwargs...)
+    return ssf.h(args...; applied_kwargs...)
 end
