@@ -1,12 +1,12 @@
 # ControlSimTools
 
+<!--
 [![Stable](https://img.shields.io/badge/docs-stable-blue.svg)](https://jonniedie.github.io/ControlSimTools.jl/stable)
 [![Dev](https://img.shields.io/badge/docs-dev-blue.svg)](https://jonniedie.github.io/ControlSimTools.jl/dev)
-[![Project Status: WIP – Initial development is in progress, but there has not yet been a stable, usable release suitable for the public](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
-<!--
 [![Build Status](https://travis-ci.com/jonniedie/ControlSimTools.jl.svg?branch=master)](https://travis-ci.com/jonniedie/ControlSimTools.jl)
 [![Codecov](https://codecov.io/gh/jonniedie/ControlSimTools.jl/branch/master/graph/badge.svg)](https://codecov.io/gh/jonniedie/ControlSimTools.jl)
 -->
+[![Project Status: WIP – Initial development is in progress, but there has not yet been a stable, usable release suitable for the public](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
 
 This is package is a way for me to experiment with ultra-flexible control systems simulations using plain [DifferentialEquations.jl](https://github.com/SciML/DifferentialEquations.jl). The driving idea is offer something close to the convenience of a domain-specific language like Simulink without having to give up the flexibility or rich features of DifferentialEquations.jl. If you are looking for a real causal simulation DSL that is built on top of DifferentialEquations.jl, I'd suggest trying out [JuSDL.jl](https://github.com/zekeriyasari/Jusdl.jl) instead. If you are working with purely linear systems, [ControlSystems.jl](https://github.com/JuliaControl/ControlSystems.jl) is probably what you should be using.
 
